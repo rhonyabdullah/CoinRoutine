@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -13,13 +13,21 @@ plugins {
 }
 
 kotlin {
+    targets.configureEach {
+        compilations.configureEach {
+            compileTaskProvider.get().compilerOptions {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
+    }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
 //        iosX64(),
 //        iosArm64(),
@@ -30,9 +38,9 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -83,6 +91,8 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "API_KEY", loadLocalProperty("coinRankingAPIKey"))
     }
     packaging {
         resources {
@@ -98,6 +108,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 room {
@@ -107,4 +120,16 @@ room {
 dependencies {
     ksp(libs.room.compiler)
     debugImplementation(compose.uiTooling)
+}
+
+fun loadLocalProperty(propertyName: String): String {
+    val localProperties = Properties()
+    val localPropertiesFile = project.rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.inputStream())
+        return localProperties.getProperty(propertyName)
+    } else {
+        throw GradleException("can not find property : $propertyName")
+    }
+
 }
