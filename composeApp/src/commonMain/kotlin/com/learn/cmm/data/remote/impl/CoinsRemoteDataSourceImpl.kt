@@ -12,7 +12,7 @@ import com.learn.cmm.core.network.safeCall
 
 private const val BASE_URL = "https://api.coinranking.com/v2"
 
-class KtorCoinsRemoteDataSource(
+class CoinsRemoteDataSourceImpl(
     private val httpClient: HttpClient
 ) : CoinsRemoteDataSource {
 
