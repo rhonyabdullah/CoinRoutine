@@ -3,12 +3,16 @@ agp = "8.9.1"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
+versionCode = "1"
+versionName = "1.0.0"
+buildkonfig = "0.17.1"
 kotlin = "2.1.20"
 compose-multiplatform = "1.7.3"
 compose-test = "1.7.8"
 coil-compose = "3.1.0"
 junit = "4.13.2"
 activity-compose = "1.10.1"
+kotzilla = "1.0.1"
 ktor = "3.1.2"
 ksp = "2.1.20-2.0.0"
 kotlin-date-time = "0.6.2"
@@ -26,10 +30,13 @@ core-ktx = "1.7.0"
 [libraries]
 # Shared Libraries
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit" }
+kotzilla-plugin = { module = "io.kotzilla:kotzilla-plugin", version.ref = "kotzilla" }
+kotzilla-sdk = { module = "io.kotzilla:kotzilla-sdk", version.ref = "kotzilla" }
 test-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 test-compose-ui-junit4-android = { module = "androidx.compose.ui:ui-test-junit4-android", version.ref = "compose-test" }
@@ -80,6 +87,7 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotzilla = { id  = "io.kotzilla.kotzilla-plugin", version.ref = "kotzilla" }
 
 [bundles]
 ktor = [

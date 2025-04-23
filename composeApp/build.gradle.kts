@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.konan.properties.Properties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,6 +11,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotzilla)
+    id("com.codingfeline.buildkonfig")
 }
 
 kotlin {
@@ -68,6 +71,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose.navigation)
+            implementation(libs.kotzilla.sdk)
 
             implementation(libs.coil.compose.core)
             implementation(libs.coil.compose)
@@ -81,16 +85,27 @@ kotlin {
     }
 }
 
+val coinAppId = "com.learn.cmm"
+
+buildkonfig {
+    packageName = coinAppId
+
+    defaultConfigs {
+        buildConfigField(STRING, "versionName", libs.versions.versionName.get())
+        buildConfigField(STRING, "KOTZILLA_KEY", loadLocalProperty("kotzillaAPIKey"))
+    }
+}
+
 android {
-    namespace = "com.learn.cmm"
+    namespace = coinAppId
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.learn.cmm"
+        applicationId = coinAppId
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         buildConfigField("String", "API_KEY", loadLocalProperty("coinRankingAPIKey"))
     }
