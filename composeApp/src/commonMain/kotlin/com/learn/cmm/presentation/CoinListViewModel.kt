@@ -6,6 +6,7 @@ import com.learn.cmm.core.domain.Result
 import com.learn.cmm.domain.GetCoinListUseCase
 import com.learn.cmm.utils.formatFiat
 import com.learn.cmm.utils.formatPercentage
+import com.learn.cmm.utils.toUiText
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -43,10 +44,10 @@ class CoinListViewModel(
                 )
             }
 
-            is Result.Error<*> -> _state.update {
+            is Result.Error -> _state.update {
                 it.copy(
                     coins = emptyList(),
-                    error = null //TODO: coinsResponse.error.toUiText()
+                    error = response.error.toUiText()
                 )
             }
         }
