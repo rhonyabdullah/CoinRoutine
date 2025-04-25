@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.learn.cmm.core.domain.Result
 import com.learn.cmm.domain.GetCoinListUseCase
+import com.learn.cmm.domain.GetCoinPriceHistoryUseCase
 import com.learn.cmm.utils.formatFiat
 import com.learn.cmm.utils.formatPercentage
 import com.learn.cmm.utils.toUiText
@@ -12,9 +13,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class CoinListViewModel(
-    private val getCoinListUseCase: GetCoinListUseCase
+    private val getCoinListUseCase: GetCoinListUseCase,
+    private val getCoinPriceHistoryUseCase: GetCoinPriceHistoryUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CoinState())
@@ -25,6 +28,50 @@ class CoinListViewModel(
         started = SharingStarted.WhileSubscribed(),
         initialValue = CoinState()
     )
+
+    fun onCoinLongPressed(coinId: String) {
+        _state.update {
+            it.copy(
+                chartState = UiChartState(
+                    sparkLine = emptyList(),
+                    isLoading = true,
+                )
+            )
+        }
+
+        viewModelScope.launch {
+            when(val priceHistory = getCoinPriceHistoryUseCase.execute(coinId)) {
+                is Result.Success -> {
+                    _state.update { currentState ->
+                        currentState.copy(
+                            chartState = UiChartState(
+                                sparkLine = priceHistory.data.sortedBy { it.timestamp }.map { it.price },
+                                isLoading = false,
+                                coinName = _state.value.coins.find { it.id == coinId }?.name.orEmpty(),
+                            )
+                        )
+                    }
+                }
+                is Result.Error -> {
+                    _state.update { currentState ->
+                        currentState.copy(
+                            chartState = UiChartState(
+                                sparkLine = emptyList(),
+                                isLoading = false,
+                                coinName = "",
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun onDismissChart() {
+        _state.update {
+            it.copy(chartState = null)
+        }
+    }
 
     private suspend fun getCoinList() {
         when (val response = getCoinListUseCase.execute()) {

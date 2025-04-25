@@ -5,6 +5,7 @@ import com.learn.cmm.core.network.HttpClientFactory
 import com.learn.cmm.data.remote.impl.CoinsRemoteDataSourceImpl
 import com.learn.cmm.domain.GetCoinDetailUseCase
 import com.learn.cmm.domain.GetCoinListUseCase
+import com.learn.cmm.domain.GetCoinPriceHistoryUseCase
 import com.learn.cmm.domain.api.CoinsRemoteDataSource
 import com.learn.cmm.presentation.CoinListViewModel
 import io.kotzilla.sdk.analytics.koin.analytics
@@ -39,10 +40,12 @@ val sharedModule = module {
     // coins list
     viewModel {
         CoinListViewModel(
-            getCoinListUseCase = get()
+            getCoinListUseCase = get(),
+            getCoinPriceHistoryUseCase = get()
         )
     }
     singleOf(::GetCoinListUseCase)
     singleOf(::CoinsRemoteDataSourceImpl).bind<CoinsRemoteDataSource>()
     singleOf(::GetCoinDetailUseCase)
+    singleOf(::GetCoinPriceHistoryUseCase)
 }
