@@ -1,6 +1,9 @@
 package com.learn.cmm.di
 
+import androidx.room.RoomDatabase
 import com.learn.cmm.BuildKonfig
+import com.learn.cmm.core.database.portofolio.PortfolioDatabase
+import com.learn.cmm.core.database.portofolio.getPortfolioDatabase
 import com.learn.cmm.core.network.HttpClientFactory
 import com.learn.cmm.data.remote.impl.CoinsRemoteDataSourceImpl
 import com.learn.cmm.domain.GetCoinDetailUseCase
@@ -36,6 +39,13 @@ val sharedModule = module {
 
     // core
     single<HttpClient> { HttpClientFactory.create(get()) }
+
+    // portfolio
+    single<PortfolioDatabase> {
+        getPortfolioDatabase(
+            builder = get<RoomDatabase.Builder<PortfolioDatabase>>()
+        )
+    }
 
     // coins list
     viewModel {
