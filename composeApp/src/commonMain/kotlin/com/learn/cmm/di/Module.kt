@@ -10,6 +10,8 @@ import com.learn.cmm.domain.GetCoinDetailUseCase
 import com.learn.cmm.domain.GetCoinListUseCase
 import com.learn.cmm.domain.GetCoinPriceHistoryUseCase
 import com.learn.cmm.domain.api.CoinsRemoteDataSource
+import com.learn.cmm.portofolio.data.PortfolioRepositoryImpl
+import com.learn.cmm.portofolio.domain.PortfolioRepository
 import com.learn.cmm.presentation.CoinListViewModel
 import io.kotzilla.sdk.analytics.koin.analytics
 import io.ktor.client.HttpClient
@@ -46,6 +48,8 @@ val sharedModule = module {
             builder = get<RoomDatabase.Builder<PortfolioDatabase>>()
         )
     }
+
+    singleOf(::PortfolioRepositoryImpl).bind<PortfolioRepository>()
 
     // coins list
     viewModel {
