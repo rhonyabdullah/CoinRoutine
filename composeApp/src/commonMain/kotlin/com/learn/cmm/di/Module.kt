@@ -44,11 +44,7 @@ val sharedModule = module {
     single<HttpClient> { HttpClientFactory.create(get()) }
 
     // portfolio
-    single<PortfolioDatabase> {
-        getPortfolioDatabase(
-            builder = get<RoomDatabase.Builder<PortfolioDatabase>>()
-        )
-    }
+    single<PortfolioDatabase> { getPortfolioDatabase(get()) }
 
     singleOf(::PortfolioRepositoryImpl).bind<PortfolioRepository>()
 
