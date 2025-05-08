@@ -1,4 +1,4 @@
-package com.learn.cmm.presentation.component
+package com.learn.cmm.coins.presentation.component
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize

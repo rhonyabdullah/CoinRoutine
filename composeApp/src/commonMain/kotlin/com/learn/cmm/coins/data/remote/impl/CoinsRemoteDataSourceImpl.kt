@@ -1,10 +1,10 @@
-package com.learn.cmm.data.remote.impl
+package com.learn.cmm.coins.data.remote.impl
 
 import com.learn.cmm.core.domain.DataError
-import com.learn.cmm.data.remote.dto.CoinDetailsResponseDto
-import com.learn.cmm.data.remote.dto.CoinPriceHistoryResponseDto
-import com.learn.cmm.data.remote.dto.CoinsResponseDto
-import com.learn.cmm.domain.api.CoinsRemoteDataSource
+import com.learn.cmm.coins.data.remote.dto.CoinDetailsResponseDto
+import com.learn.cmm.coins.data.remote.dto.CoinPriceHistoryResponseDto
+import com.learn.cmm.coins.data.remote.dto.CoinsResponseDto
+import com.learn.cmm.coins.domain.api.CoinsRemoteDataSource
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import com.learn.cmm.core.domain.Result

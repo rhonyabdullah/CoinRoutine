@@ -1,4 +1,4 @@
-package com.learn.cmm.domain.model
+package com.learn.cmm.coins.domain.model
 
 import com.learn.cmm.core.domain.coin.Coin
 

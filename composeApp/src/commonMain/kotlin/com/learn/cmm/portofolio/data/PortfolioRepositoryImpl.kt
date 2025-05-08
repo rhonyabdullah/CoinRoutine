@@ -3,7 +3,7 @@ package com.learn.cmm.portofolio.data
 import androidx.sqlite.SQLiteException
 import com.learn.cmm.core.domain.DataError
 import com.learn.cmm.core.domain.EmptyResult
-import com.learn.cmm.domain.api.CoinsRemoteDataSource
+import com.learn.cmm.coins.domain.api.CoinsRemoteDataSource
 import com.learn.cmm.portofolio.data.local.PortfolioDao
 import com.learn.cmm.portofolio.data.local.UserBalanceDao
 import com.learn.cmm.portofolio.data.local.UserBalanceEntity

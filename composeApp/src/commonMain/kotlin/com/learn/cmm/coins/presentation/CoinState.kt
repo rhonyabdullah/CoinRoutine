@@ -1,4 +1,4 @@
-package com.learn.cmm.presentation
+package com.learn.cmm.coins.presentation
 
 import androidx.compose.runtime.Stable
 import org.jetbrains.compose.resources.StringResource

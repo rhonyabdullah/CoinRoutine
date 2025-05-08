@@ -1,9 +1,9 @@
-package com.learn.cmm.domain.api
+package com.learn.cmm.coins.domain.api
 
 import com.learn.cmm.core.domain.DataError
-import com.learn.cmm.data.remote.dto.CoinDetailsResponseDto
-import com.learn.cmm.data.remote.dto.CoinPriceHistoryResponseDto
-import com.learn.cmm.data.remote.dto.CoinsResponseDto
+import com.learn.cmm.coins.data.remote.dto.CoinDetailsResponseDto
+import com.learn.cmm.coins.data.remote.dto.CoinPriceHistoryResponseDto
+import com.learn.cmm.coins.data.remote.dto.CoinsResponseDto
 import com.learn.cmm.core.domain.Result
 
 interface CoinsRemoteDataSource {

@@ -1,19 +1,18 @@
 package com.learn.cmm.di
 
-import androidx.room.RoomDatabase
 import com.learn.cmm.BuildKonfig
 import com.learn.cmm.core.database.portofolio.PortfolioDatabase
 import com.learn.cmm.core.database.portofolio.getPortfolioDatabase
 import com.learn.cmm.core.network.HttpClientFactory
-import com.learn.cmm.data.remote.impl.CoinsRemoteDataSourceImpl
-import com.learn.cmm.domain.GetCoinDetailUseCase
-import com.learn.cmm.domain.GetCoinListUseCase
-import com.learn.cmm.domain.GetCoinPriceHistoryUseCase
-import com.learn.cmm.domain.api.CoinsRemoteDataSource
+import com.learn.cmm.coins.data.remote.impl.CoinsRemoteDataSourceImpl
+import com.learn.cmm.coins.domain.GetCoinDetailUseCase
+import com.learn.cmm.coins.domain.GetCoinListUseCase
+import com.learn.cmm.coins.domain.GetCoinPriceHistoryUseCase
+import com.learn.cmm.coins.domain.api.CoinsRemoteDataSource
 import com.learn.cmm.portofolio.data.PortfolioRepositoryImpl
 import com.learn.cmm.portofolio.domain.PortfolioRepository
 import com.learn.cmm.portofolio.presentation.PortfolioViewModel
-import com.learn.cmm.presentation.CoinListViewModel
+import com.learn.cmm.coins.presentation.CoinListViewModel
 import com.learn.cmm.trade.domain.BuyCoinUseCase
 import io.kotzilla.sdk.analytics.koin.analytics
 import io.ktor.client.HttpClient

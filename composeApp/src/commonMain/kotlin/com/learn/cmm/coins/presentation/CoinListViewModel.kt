@@ -1,10 +1,10 @@
-package com.learn.cmm.presentation
+package com.learn.cmm.coins.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.learn.cmm.core.domain.Result
-import com.learn.cmm.domain.GetCoinListUseCase
-import com.learn.cmm.domain.GetCoinPriceHistoryUseCase
+import com.learn.cmm.coins.domain.GetCoinListUseCase
+import com.learn.cmm.coins.domain.GetCoinPriceHistoryUseCase
 import com.learn.cmm.utils.formatFiat
 import com.learn.cmm.utils.formatPercentage
 import com.learn.cmm.utils.toUiText

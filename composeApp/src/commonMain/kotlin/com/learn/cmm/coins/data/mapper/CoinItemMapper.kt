@@ -1,10 +1,10 @@
-package com.learn.cmm.data.mapper
+package com.learn.cmm.coins.data.mapper
 
 import com.learn.cmm.core.domain.coin.Coin
-import com.learn.cmm.data.remote.dto.CoinItemDto
-import com.learn.cmm.data.remote.dto.CoinPriceDto
-import com.learn.cmm.domain.model.CoinModel
-import com.learn.cmm.domain.model.PriceModel
+import com.learn.cmm.coins.data.remote.dto.CoinItemDto
+import com.learn.cmm.coins.data.remote.dto.CoinPriceDto
+import com.learn.cmm.coins.domain.model.CoinModel
+import com.learn.cmm.coins.domain.model.PriceModel
 
 fun CoinItemDto.toCoinModel() = CoinModel(
     coin = Coin(

@@ -1,4 +1,4 @@
-package com.learn.cmm.presentation
+package com.learn.cmm.coins.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -30,7 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import com.learn.cmm.presentation.component.PerformanceChart
+import com.learn.cmm.coins.presentation.component.PerformanceChart
 import com.learn.cmm.theme.CoinRoutineTheme
 import com.learn.cmm.theme.LocalCoinRoutineColorsPalette
 import org.jetbrains.compose.ui.tooling.preview.Preview

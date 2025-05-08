@@ -1,4 +1,4 @@
-package com.learn.cmm.data.remote.dto
+package com.learn.cmm.coins.data.remote.dto
 
 import kotlinx.serialization.Serializable
 

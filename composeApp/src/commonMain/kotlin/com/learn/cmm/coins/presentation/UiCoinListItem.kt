@@ -1,4 +1,4 @@
-package com.learn.cmm.presentation
+package com.learn.cmm.coins.presentation
 
 data class UiCoinListItem(
     val id: String,
