@@ -14,6 +14,7 @@ import com.learn.cmm.portofolio.data.PortfolioRepositoryImpl
 import com.learn.cmm.portofolio.domain.PortfolioRepository
 import com.learn.cmm.portofolio.presentation.PortfolioViewModel
 import com.learn.cmm.presentation.CoinListViewModel
+import com.learn.cmm.trade.domain.BuyCoinUseCase
 import io.kotzilla.sdk.analytics.koin.analytics
 import io.ktor.client.HttpClient
 import org.koin.core.context.startKoin
@@ -67,4 +68,5 @@ val sharedModule = module {
     singleOf(::CoinsRemoteDataSourceImpl).bind<CoinsRemoteDataSource>()
     singleOf(::GetCoinDetailUseCase)
     singleOf(::GetCoinPriceHistoryUseCase)
+    singleOf(::BuyCoinUseCase)
 }
