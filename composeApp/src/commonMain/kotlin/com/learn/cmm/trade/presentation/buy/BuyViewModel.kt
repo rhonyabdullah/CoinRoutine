@@ -1,4 +1,4 @@
-package com.learn.cmm.trade.buy
+package com.learn.cmm.trade.presentation.buy
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
