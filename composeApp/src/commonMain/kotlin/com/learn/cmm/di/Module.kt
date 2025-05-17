@@ -15,6 +15,8 @@ import com.learn.cmm.portofolio.presentation.PortfolioViewModel
 import com.learn.cmm.coins.presentation.CoinListViewModel
 import com.learn.cmm.trade.domain.BuyCoinUseCase
 import com.learn.cmm.trade.domain.SellCoinUseCase
+import com.learn.cmm.trade.presentation.buy.BuyViewModel
+import com.learn.cmm.trade.presentation.sell.SellViewModel
 import io.kotzilla.sdk.analytics.koin.analytics
 import io.ktor.client.HttpClient
 import org.koin.core.context.startKoin
@@ -70,4 +72,7 @@ val sharedModule = module {
     singleOf(::GetCoinPriceHistoryUseCase)
     singleOf(::BuyCoinUseCase)
     singleOf(::SellCoinUseCase)
+
+    viewModel { BuyViewModel(get(), get(), get()) }
+    viewModel { SellViewModel(get(), get(), get()) }
 }
