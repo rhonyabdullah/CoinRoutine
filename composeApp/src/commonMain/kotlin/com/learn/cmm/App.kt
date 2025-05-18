@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.learn.cmm.coins.presentation.CoinsListScreen
 import com.learn.cmm.core.navigation.Buy
 import com.learn.cmm.core.navigation.Coins
@@ -28,8 +29,8 @@ fun App() {
         ) {
             composable<Portfolio> {
                 PortfolioScreen(
-                    onCoinItemClicked = { coinId -> // TODO: will be used later
-                        navController.navigate(Sell)
+                    onCoinItemClicked = { coinId ->
+                        navController.navigate(Sell(coinId))
                     },
                     onDiscoverCoinsClicked = {
                         navController.navigate(Coins)
@@ -38,14 +39,15 @@ fun App() {
             }
 
             composable<Coins> {
-                CoinsListScreen { coinId -> // TODO: will be used later
-                    navController.navigate(Buy)
+                CoinsListScreen { coinId ->
+                    navController.navigate(Buy(coinId))
                 }
             }
 
             composable<Buy> { navBackStackEntry ->
+                val coinId: String = navBackStackEntry.toRoute<Buy>().coinId
                 BuyScreen(
-                    coinId = "todo",
+                    coinId = coinId,
                     navigateToPortfolio = {
                         navController.navigate(Portfolio) {
                             popUpTo(Portfolio) { inclusive = true }
@@ -54,8 +56,9 @@ fun App() {
                 )
             }
             composable<Sell> { navBackStackEntry ->
+                val coinId: String = navBackStackEntry.toRoute<Sell>().coinId
                 SellScreen(
-                    coinId = "todo",
+                    coinId = coinId,
                     navigateToPortfolio = {
                         navController.navigate(Portfolio) {
                             popUpTo(Portfolio) { inclusive = true }
