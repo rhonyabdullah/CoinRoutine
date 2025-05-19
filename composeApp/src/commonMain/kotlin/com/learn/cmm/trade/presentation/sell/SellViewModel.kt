@@ -14,7 +14,9 @@ import com.learn.cmm.trade.presentation.common.UiTradeCoinItem
 import com.learn.cmm.trade.presentation.mapper.toCoin
 import com.learn.cmm.utils.formatFiat
 import com.learn.cmm.utils.toUiText
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -58,6 +60,9 @@ class SellViewModel(
         initialValue = TradeState(isLoading = true)
     )
 
+    private val _events = Channel<Events>(capacity = Channel.BUFFERED)
+    val events = _events.receiveAsFlow()
+
     fun onAmountChanged(amount: String) {
         _amount.value = amount
     }
@@ -72,7 +77,7 @@ class SellViewModel(
             )
             when (sellCoinResponse) {
                 is Result.Success -> {
-                    // TODO: add event and navigation
+                    _events.send(Events.SellSuccess)
                 }
 
                 is Result.Error -> {
@@ -114,5 +119,9 @@ class SellViewModel(
                 }
             }
         }
+    }
+
+    sealed interface Events {
+        data object SellSuccess : Events
     }
 }
