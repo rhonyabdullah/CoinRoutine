@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -26,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -86,6 +90,7 @@ private fun CoinsList(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
+            .windowInsetsPadding(WindowInsets.safeDrawing)
             .background(MaterialTheme.colorScheme.background)
     ) {
         LazyColumn(
@@ -216,10 +221,40 @@ private fun CoinChartDialog(
 
 @Preview
 @Composable
-fun CoinsListScreenPreview() {
+fun CoinsListContentPreview() {
     CoinRoutineTheme {
         CoinsListContent(
-            state = CoinState(),
+            state = CoinState(
+                coins = listOf(
+                    UiCoinListItem(
+                        id = "bitcoin",
+                        name = "Bitcoin",
+                        symbol = "BTC",
+                        iconUrl = "https://static.coinstats.app/coins/1650455588819.png",
+                        formattedPrice = "$26,000",
+                        formattedChange = "+1.5%",
+                        isPositive = true
+                    ),
+                    UiCoinListItem(
+                        id = "ethereum",
+                        name = "Ethereum",
+                        symbol = "ETH",
+                        iconUrl = "https://static.coinstats.app/coins/1650455627820.png",
+                        formattedPrice = "$1,800",
+                        formattedChange = "-0.5%",
+                        isPositive = false
+                    ),
+                    UiCoinListItem(
+                        id = "tether",
+                        name = "Tether",
+                        symbol = "USDT",
+                        iconUrl = "https://static.coinstats.app/coins/1650455658043.png",
+                        formattedPrice = "$1.00",
+                        formattedChange = "0.0%",
+                        isPositive = true
+                    )
+                )
+            ),
             onCoinClicked = {},
             onDismissChart = {},
             onCoinLongPressed = {}

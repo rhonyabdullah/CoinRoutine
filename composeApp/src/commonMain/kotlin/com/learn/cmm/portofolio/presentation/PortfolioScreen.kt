@@ -181,7 +181,6 @@ private fun PortfolioCoinsList(
                     color = MaterialTheme.colorScheme.onBackground,
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     modifier = Modifier
-                        .weight(1f)
                         .padding(16.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -293,9 +292,40 @@ private fun PortfolioEmptySection(
 fun PortfolioContentPreview() {
     PortfolioContent(
         state = PortfolioState(
-            portfolioValue = "$ 10.000",
-            cashBalance = "$: 5.000",
+            portfolioValue = "$10,000",
+            cashBalance = "$5,000",
             showBuyButton = true,
+            coins = listOf(
+                UiPortfolioCoinItem(
+                    id = "bitcoin",
+                    name = "Bitcoin",
+                    iconUrl = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+                    amountInUnitText = "0.5 BTC",
+                    amountInFiatText = "$35,000",
+                    performancePercentText = "+5.00%",
+                    isPositive = true
+                ),
+                UiPortfolioCoinItem(
+                    id = "ethereum",
+                    name = "Ethereum",
+                    iconUrl = "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
+                    amountInUnitText = "2 ETH",
+                    amountInFiatText = "$6,000",
+                    performancePercentText = "+10.00%",
+                    isPositive = true
+                ),
+                UiPortfolioCoinItem(
+                    id = "litecoin",
+                    name = "Litecoin",
+                    iconUrl = "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580",
+                    amountInUnitText = "10 LTC",
+                    amountInFiatText = "$1,500",
+                    performancePercentText = "-2.00%",
+                    isPositive = false
+                )
+            )
         ),
-        onCoinItemClicked = {}, onDiscoverCoinsClicked = {})
+        onCoinItemClicked = {},
+        onDiscoverCoinsClicked = {}
+    )
 }
