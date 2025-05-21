@@ -16,9 +16,13 @@ import com.learn.cmm.utils.formatCoinUnit
 import com.learn.cmm.utils.formatFiat
 import com.learn.cmm.utils.formatPercentage
 import com.learn.cmm.utils.toUiText
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 
 class PortfolioViewModel(
-    private val portfolioRepository: PortfolioRepository
+    private val portfolioRepository: PortfolioRepository,
+    dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(PortfolioState(isLoading = true))
@@ -37,6 +41,7 @@ class PortfolioViewModel(
                     cashBalance = cashBalance
                 )
             }
+
             is Result.Error -> {
                 handleErrorState(
                     currentState = currentState,
@@ -46,7 +51,7 @@ class PortfolioViewModel(
         }
     }.onStart {
         portfolioRepository.initializeBalance()
-    }.stateIn(
+    }.flowOn(dispatcher).stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
         initialValue = PortfolioState(isLoading = true)
