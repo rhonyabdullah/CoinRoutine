@@ -1,9 +1,10 @@
 package com.learn.cmm.portofolio.presentation
 
 import app.cash.turbine.test
+import com.learn.cmm.core.domain.DataError
 import com.learn.cmm.portofolio.data.FakePortfolioRepository
-import com.learn.cmm.portofolio.domain.PortfolioRepository
 import com.learn.cmm.utils.formatFiat
+import com.learn.cmm.utils.toUiText
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -13,12 +14,12 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class PortfolioViewModelTest {
 
     private lateinit var viewModel: PortfolioViewModel
-    private lateinit var portfolioRepository: PortfolioRepository
+    private lateinit var portfolioRepository: FakePortfolioRepository
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @BeforeTest
     fun setup() {
         portfolioRepository = FakePortfolioRepository()
@@ -63,6 +64,17 @@ class PortfolioViewModelTest {
             val updatedState = awaitItem()
             assertEquals(formatFiat(11000.0), updatedState.portfolioValue)
             cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `loading state and error message update on failure`() = runTest {
+        portfolioRepository.simulateError()
+
+        viewModel.state.test {
+            val errorState = awaitItem()
+            assertFalse(errorState.isLoading)
+            assertEquals(DataError.Remote.SERVER.toUiText(), errorState.error)
         }
     }
 
