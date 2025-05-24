@@ -6,4 +6,8 @@
     <string name="error_too_many_requests">Just wait a minute and try again!</string>
     <string name="error_serialization">Couldn't parse data.</string>
     <string name="error_insufficient_balance">Insufficient funds!</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="sell_now">Sell Now</string>
+    <string name="buy_amount">Buy Amount</string>
+    <string name="sell_amount">Sell Amount</string>
 </resources>

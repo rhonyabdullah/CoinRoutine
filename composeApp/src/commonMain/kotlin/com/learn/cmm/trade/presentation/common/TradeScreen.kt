@@ -34,12 +34,18 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coinroutine.composeapp.generated.resources.Res
+import coinroutine.composeapp.generated.resources.buy_amount
+import coinroutine.composeapp.generated.resources.buy_now
+import coinroutine.composeapp.generated.resources.sell_amount
+import coinroutine.composeapp.generated.resources.sell_now
 import com.learn.cmm.theme.CoinRoutineTheme
 import com.learn.cmm.theme.LocalCoinRoutineColorsPalette
 import com.learn.cmm.trade.presentation.common.component.rememberCurrencyVisualTransformation
@@ -59,6 +65,7 @@ fun TradeScreen(
             .fillMaxSize()
             .imePadding()
             .background(MaterialTheme.colorScheme.background)
+            .testTag("trade_screen")
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
@@ -85,14 +92,14 @@ fun TradeScreen(
                     text = state.coin?.name ?: "",
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.padding(4.dp)
+                    modifier = Modifier.padding(4.dp).testTag("trade_screen_coin_name")
                 )
             }
             Spacer(modifier = Modifier.height(24.dp))
             Text(
                 text = when (tradeType) {
-                    TradeType.BUY -> "Buy Amount"
-                    TradeType.SELL -> "Sell Amount"
+                    TradeType.BUY -> stringResource(Res.string.buy_amount)
+                    TradeType.SELL -> stringResource(Res.string.sell_amount)
                 },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -112,7 +119,7 @@ fun TradeScreen(
                     text = stringResource(state.error),
                     style = MaterialTheme.typography.labelLarge,
                     color = LocalCoinRoutineColorsPalette.current.lossRed,
-                    modifier = Modifier.padding(4.dp)
+                    modifier = Modifier.padding(4.dp).testTag("trade_error")
                 )
             }
         }
@@ -125,12 +132,15 @@ fun TradeScreen(
                 }
             ),
             contentPadding = PaddingValues(horizontal = 64.dp),
-            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp)
+            modifier = Modifier
+                .testTag("submit_button")
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 32.dp)
         ) {
             Text(
                 text = when (tradeType) {
-                    TradeType.BUY -> "Buy Now"
-                    TradeType.SELL -> "Sell Now"
+                    TradeType.BUY -> stringResource(Res.string.buy_now)
+                    TradeType.SELL -> stringResource(Res.string.sell_now)
                 },
                 style = MaterialTheme.typography.bodyLarge,
                 color = when (tradeType) {
