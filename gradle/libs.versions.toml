@@ -12,7 +12,8 @@ compose-test = "1.8.2"
 coil-compose = "3.2.0"
 junit = "4.13.2"
 activity-compose = "1.10.1"
-kotzilla = "1.0.1"
+kotzilla_plugin = "1.0.2-RC4"
+kotzilla_sdk = "1.1.0"
 ktor = "3.1.3"
 ksp = "2.1.21-2.0.1"
 kotlin-date-time = "0.6.2"
@@ -35,8 +36,8 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit" }
-kotzilla-plugin = { module = "io.kotzilla:kotzilla-plugin", version.ref = "kotzilla" }
-kotzilla-sdk = { module = "io.kotzilla:kotzilla-sdk", version.ref = "kotzilla" }
+kotzilla-plugin = { module = "io.kotzilla:kotzilla-plugin", version.ref = "kotzilla_plugin" }
+kotzilla-sdk = { module = "io.kotzilla:kotzilla-sdk", version.ref = "kotzilla_sdk" }
 test-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 test-compose-ui-junit4-android = { module = "androidx.compose.ui:ui-test-junit4-android", version.ref = "compose-test" }
@@ -87,7 +88,7 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotzilla = { id  = "io.kotzilla.kotzilla-plugin", version.ref = "kotzilla" }
+kotzilla = { id  = "io.kotzilla.kotzilla-plugin", version.ref = "kotzilla_plugin" }
 
 [bundles]
 ktor = [
