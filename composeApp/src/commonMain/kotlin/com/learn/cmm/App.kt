@@ -21,6 +21,8 @@ import com.learn.cmm.trade.presentation.sell.SellScreen
 @Composable
 fun App() {
     val navController: NavHostController = rememberNavController()
+//    if want to set manually
+//    setLanguage(stringResource(Res.string.locale))
     CoinRoutineTheme {
         NavHost(
             navController = navController,

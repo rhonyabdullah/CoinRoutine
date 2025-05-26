@@ -1,0 +1,18 @@
+<resources>
+    <string name="locale">id</string>
+    <string name="error_disk_full">Ups, sepertinya disk Anda penuh.</string>
+    <string name="error_unknown">Ups, terjadi kesalahan.</string>
+    <string name="error_request_timeout">Permintaan kehabisan waktu.</string>
+    <string name="error_no_internet">Tidak dapat menjangkau server, silakan periksa koneksi internet Anda.</string>
+    <string name="error_too_many_requests">Tunggu sebentar dan coba lagi!</string>
+    <string name="error_serialization">Tidak dapat mem-parsing data.</string>
+    <string name="error_insufficient_balance">Dana tidak mencukupi!</string>
+    <string name="total_value">Total Nilai:</string>
+    <string name="cash_balance">Saldo Kas: </string>
+    <string name="buy_coin">Beli Koin</string>
+    <string name="top_coins">🔥 Koin Teratas:</string>
+    <string name="buy_now">Beli Sekarang</string>
+    <string name="sell_now">Jual Sekarang</string>
+    <string name="buy_amount">Jumlah Beli</string>
+    <string name="sell_amount">Jumlah Jual</string>
+</resources>

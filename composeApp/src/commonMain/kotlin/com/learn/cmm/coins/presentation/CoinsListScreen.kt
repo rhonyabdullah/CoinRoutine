@@ -34,9 +34,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
+import coinroutine.composeapp.generated.resources.Res
+import coinroutine.composeapp.generated.resources.top_coins
 import com.learn.cmm.coins.presentation.component.PerformanceChart
 import com.learn.cmm.theme.CoinRoutineTheme
 import com.learn.cmm.theme.LocalCoinRoutineColorsPalette
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -99,7 +102,7 @@ private fun CoinsList(
         ) {
             item {
                 Text(
-                    text = "🔥 Top Coins:",
+                    text = stringResource(Res.string.top_coins),
                     color = MaterialTheme.colorScheme.onBackground,
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     modifier = Modifier.padding(16.dp)
