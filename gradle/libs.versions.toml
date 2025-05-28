@@ -37,7 +37,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit" }
 kotzilla-plugin = { module = "io.kotzilla:kotzilla-plugin", version.ref = "kotzilla_plugin" }
-kotzilla-sdk = { module = "io.kotzilla:kotzilla-sdk", version.ref = "kotzilla_sdk" }
+kotzilla-sdk = { module = "io.kotzilla:kotzilla-sdk-ktor3", version.ref = "kotzilla_sdk" }
 test-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 test-compose-ui-junit4-android = { module = "androidx.compose.ui:ui-test-junit4-android", version.ref = "compose-test" }
